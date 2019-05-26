@@ -104,6 +104,7 @@ module.exports.testadd = function(req,res){
             //   }else{
                 res.redirect('/paywithpaytm?amount='+data);
               //}
+              
         }
     })
 }
