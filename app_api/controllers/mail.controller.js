@@ -2,18 +2,18 @@ const nodemailer = require('nodemailer');
 const mongoose = require('mongoose');
 const User = mongoose.model('user');
 const jsArray = [];
-module.exports.findEmail = function(req,res){
+ module.exports.findEmail = async function(req,res){
     User.find({} , (err, User) => {
         if(err){
             res.json(err);
-        }
-        User.map(user => {
-            jsArray = user.email;
-        })
+        }User.map(User => {
+            jsArray.push(User.email);
+        });
     })
+    res.redirect('/postmail');
 }
-module.exports.postmail = function(req,res){
-    var outputText = "test email";
+module.exports.postmail = async function(req,res){
+    var outputText = "New Event Added";
     var recieverEmail = [];
     var transporter = nodemailer.createTransport({
         host: 'mail.google.com',
@@ -33,8 +33,8 @@ module.exports.postmail = function(req,res){
   
        let mailOptions = {
         from: '"edwardswift28" <edwardswift28@gmail.com>', // sender address
-        to: [recieverEmail], // list of receivers
-        subject: 'Counselling Info', // Subject line
+        to: [jsArray], // list of receivers
+        subject: 'Contest Info', // Subject line
         text: outputText, // plain text body
         html: outputText // html body
     };
@@ -42,7 +42,7 @@ module.exports.postmail = function(req,res){
         if (error) {
             return console.log(error);
         }else{
-            return console.log('done');
+            res.redirect('/volunteer')
         }
     });
   }

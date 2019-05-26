@@ -1,30 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+                <link rel="stylesheet" type="text/css" href="/Font-Awesome-4.7/css/font-awesome.min.css">
+                <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+                <link rel="stylesheet" type="text/css" href="/css/templatemo-style.css"> 
+            
+        </head>
 
 <body>
 
-                                <h4>Event add</h4>
+        <div class="container">
+                <section class="col-md-12 content" id="home">
+                    
+                   <div class="col-lg-6 col-md-6 content-item tm-black-translucent-bg tm-logo-box">
+                                <h1>Event add</h1>
                                 <form method="POST">
                                     <div class="form-group">
                                         <label for="ename">Event Name</label>
-                                        <input type="" class="form-control" placeholder="event Name" name="ename">
+                                        <input type="text" class="form-control" placeholder="Event Name" name="ename">
                                     </div>
                                     <div class="form-group">
                                         <label for="description">Event Description</label>
-                                        <input type="" class="form-control" placeholder="event description" name="description">
+                                        <input type="text" class="form-control" placeholder="Event description" name="description">
                                     </div>
+                                    <div class="form-group">
+                                            <label for="eventid">Event ID</label>
+                                            <input type="number" class="form-control" placeholder="Event description" name="eventid">
+                                        </div>
                                     <div class="form-group">
                                         <label for="cost">Cost</label>
                                         <input type="number" class="form-control" placeholder="Cost" name="cost">
                                     </div>
-                                  
+                                    <!-- <div class="form-group">
+                                        <label for="startdate">Start Date </label>
+                                        <input type="date" class="form-control" placeholder="startdate" name="startdate">
+                                    </div> -->
+                                    <div class="form-group">
+                                        <label for="enddate">End Date of Filling</label>
+                                        <input type="date" class="form-control" placeholder="enddate" name="enddate">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="venuedate">Event Date</label>
+                                        <input type="date" class="form-control" placeholder="venuedate" name="venuedate">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="venuetime">Event Time</label>
+                                        <input type="text" class="form-control" placeholder="venuetime" name="venuetime">
+                                    </div>
+                                    <div class="form-group">
+                                            <label for="location">Venue</label>
+                                            <input type="location" class="form-control" placeholder="location" name="location">
+                                        </div>
+                                    <div class="form-group">
+                                        <label for="phone">Contact</label>
+                                        <input type="number" class="form-control" placeholder="phone" name="phone">
+                                    </div>
+                                    
                                     <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Submit</button>
                 
                                 </form>
         
-    </div>
-
+                        </div>
+                        <div class="col-lg-6 col-md-6 content-item content-item-1 background tm-white-translucent-bg">
+                                <img src="images/.jpg" alt="Image 0" class="tm-img tm-img-tl">
+                        </div>
+                    </section>
+        </div>
 
 </body>
 

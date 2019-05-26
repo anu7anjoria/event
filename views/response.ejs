@@ -82,6 +82,10 @@
         <tr>
             <td class="td-title"><%= name %></td>
             <td class="td-content"><%= responseData[name] %></td>
+            <% if(name == "ORDERID"){ %>
+            <td class=""><a href="/qr-code/<%= responseData[name] %>"><button type="button">Qr code generate</button>
+            </td>
+            <% } %>
         </tr>
         <% } %>
         <% } %>
@@ -91,7 +95,7 @@
             </td>
         </tr>
         </tbody>
-    </table>
+    </table>    
 </div>
 
 </body>

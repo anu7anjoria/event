@@ -46,4 +46,5 @@ process.on('SIGTERM', () => {
 
 require('./user'); 
 require('./event');
-require('./eventrg')
+require('./eventrg');
+require('./order')

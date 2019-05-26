@@ -1,10 +1,7 @@
-var createError = require('http-errors');
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-var path = require('path');
 var session = require('express-session');
-const ejs = require("ejs");
 var session = require('express-session');
 require('./app_api/models/db');
 var cookieParser = require('cookie-parser');
@@ -25,6 +22,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + "/views"));
+app.use(express.static('./public'))
 app.set("view engine", "ejs");
 
 app.use(session({
@@ -35,14 +33,14 @@ app.use(session({
     cookie: {
         expires: 600000
     }
-  }));
+  }));  
 
-    app.use((req, res, next) => {
+app.use((req, res, next) => {
         if (req.cookies.user_sid && !req.session.user) {
         res.clearCookie('user_sid');
         }
         next();
-    });
+});
     
   // middleware function to check for logged-in users
   var sessionChecker = (req, res, next) => {
@@ -75,9 +73,9 @@ app.route('/signup')
         })
         .then(user => {
             req.session.user = user;  //===========================\
-            if(user_id.flag == 'student' ){
+            if(user.flag == 'student' ){
                 res.redirect('/student');
-            }else if(user_id.flag == 'volunteer'){
+            }else if(user.flag == 'volunteer'){
                 res.redirect('/volunteer');
             }
         })
@@ -102,9 +100,9 @@ app.route('/login')
             }
              else {
                 req.session.user = user; //===========================
-                if(user_id.flag == 'student' ){
+                if(user.flag == 'student' ){
                     res.redirect('/student');
-                }else if(user_id.flag == 'volunteer'){
+                }else if(user.flag == 'volunteer'){
                     res.redirect('/volunteer');
                 }
             }
@@ -135,6 +133,7 @@ app.get("/paywithpaytm", (req, res) => {
 });
 
 app.post("/paywithpaytmresponse", (req, res) => {
+
     responsePayment(req.body).then(
         success => {
             res.render("response.ejs", {resultData: "true", responseData: success});
@@ -144,7 +143,31 @@ app.post("/paywithpaytmresponse", (req, res) => {
         }
     );
 });
+// app.post("/paywithpaytmresponse", (req, res) => {
 
+//     responsePayment(req.body).then(
+//         success => {
+//             res.render("qr-code.ejs", {resultData: "true", responseData: success});
+//         },
+//         error => {
+//             res.send(error);
+//         }
+//     );
+// });
+app.get('/student', (req, res) => {
+    if (req.session.user && req.cookies.user_sid) {
+        res.render(__dirname + '/views/student.ejs',{title:'Student | Dashboard'});
+    } else {
+        res.redirect('/login');
+    }
+  });
+  app.get('/volunteer', (req, res) => {
+    if (req.session.user && req.cookies.user_sid) {
+        res.render(__dirname + '/views/volunteer.ejs',{title:'Student | Dashboard'});
+    } else {
+        res.redirect('/login');
+    }
+  });
 app.use('/',indexRouter);
 
 app.listen(PORT, () => {
