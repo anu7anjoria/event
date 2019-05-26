@@ -12,7 +12,11 @@
             <label for="name">name</label>
             <input type="text" class="form-control" placeholder="name" name="name">
         </div>
-        <a href="/volunteer/update/<%= data %>"><button type="submit">submit</button></a>
+        <div class="form-group">
+            <label for="description">description</label>
+            <input type="text" class="form-control" placeholder="description" name="description">
+        </div>
+        <a href="/volunteer/update/<%= val %>"><button type="submit">submit</button></a>
     </form>
 </body>
 </html>

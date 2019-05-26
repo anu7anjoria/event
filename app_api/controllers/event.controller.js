@@ -7,7 +7,9 @@ const fs = require('fs');
 module.exports.home = function(rq,res){
     res.render('index.ejs');
 }
-
+if (process.env.NODE_ENV === 'production') {
+    apiOptions.server = 'https://chitkara-event.herokuapp.com';
+  }
 module.exports.addevent = function(req,res){
     Event.create({
         name:req.body.ename,
@@ -63,10 +65,7 @@ module.exports.register = function(req,res){
         }else{
             const data = req.body.cost;
             //res.send(EventRg);
-            if (process.env.NODE_ENV === 'production') {
-                apiOptions.server = 'https://chitkara-event.herokuapp.com/paywithpaytm?amount=';
-              }
-            res.redirect(apiOptions.server+data);
+            res.redirect('/paywithpaytm?amount='+data);
         }
     })
 }
@@ -100,7 +99,11 @@ module.exports.testadd = function(req,res){
             res.send(err);
         }else{
             const data = req.params.cost;
-            res.redirect('/paywithpaytm?amount='+data);
+            if (process.env.NODE_ENV === 'production') {
+                res.redirect('https://chitkara-event.herokuapp.com/paywithpaytm?amount='+data);
+              }else{
+                res.redirect('/paywithpaytm?amount='+data);
+              }
         }
     })
 }
