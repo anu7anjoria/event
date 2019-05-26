@@ -7,9 +7,6 @@ const fs = require('fs');
 module.exports.home = function(rq,res){
     res.render('index.ejs');
 }
-if (process.env.NODE_ENV === 'production') {
-    apiOptions.server = 'https://chitkara-event.herokuapp.com';
-  }
 module.exports.addevent = function(req,res){
     Event.create({
         name:req.body.ename,
@@ -52,23 +49,7 @@ module.exports.displayEvent = function(req,res){
         }
     })
 }
-module.exports.register = function(req,res){
-    //Event id
-    EventRg.create({
-        id:req.body.id,
-        email:req.body.email,
-        name:req.body.name,
-        cost:req.body.cost
-    },function(err,EventRg){
-        if(err){
-            res.send(err);
-        }else{
-            const data = req.body.cost;
-            //res.send(EventRg);
-            res.redirect('/paywithpaytm?amount='+data);
-        }
-    })
-}
+
 module.exports.displayStudent = function(req,res){
     if(!req.session.user){
         res.redirect('/login');
@@ -138,11 +119,25 @@ module.exports.QRgen = function(req,res){
 
 module.exports.updateEvent = function(req,res){
     Event.findOneAndUpdate({ eventid: req.params.eventid }, 
-        { $set: { name: req.body.name } }, { new: true }, function(err, doc) {
+        { $set: { name: req.body.name ,
+        description:req.body.description,
+        cost:req.body.cost,
+        eventid:req.body.eventid,
+
+        //startdate:req.body.startdate,
+        enddate:req.body.enddate,
+
+        venuedate:req.body.venuedate,
+        venuetime:req.body.venuetime,
+        phone:req.body.phone,
+        location:req.body.location
+        
+        } }, { new: true }, function(err, doc) {
             if(err){
                 res.status(404).json(err);
             }else{
-                res.redirect('/volunteer/displayevent');
+                res.redirect('/send/email2');
+                //res.redirect('/volunteer/displayevent');
             }
     });
 }

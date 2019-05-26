@@ -38,14 +38,18 @@
                   <div class="col-lg-12">
                         <table>
                                 <tr>
-                                   <th>Event</th><th>Description</th><th>Cost</th><th>Id</th>
+                                  <th>Event</th><th>Description</th><th>Cost</th><th>Id</th><th>Date</th><th>Time</th><th>Location</th><th>Phone</th>
                                 </tr>
                         <% for (var da of data) { %>
                             <tr>
                               <td><%= da.name %></td>
                               <td><%= da.description %></td>
                               <td><%= da.cost %></td>
-                              <td><%= da.eventid %></td>                            
+                              <td><%= da.eventid %></td>
+                              <td><%= da.venuedate %> </td>
+                              <td><%= da.venuetime %></td> 
+                              <td><%= da.location %></td> 
+                              <td><%= da.phone %></td>                            
                               <td><a href="/volunteer/delete/<%= da.eventid %>"><button type="button">delete</button></a></td>
                               <td><a href="/volunteer/up/<%= da.eventid %>"><button type="button">update</button></a></td>
                             </tr>    

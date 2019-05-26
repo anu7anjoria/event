@@ -27,7 +27,8 @@ router.post('/volunteer/up/:eventid',ctrlEvent.updateEvent);
 
 router.get('/postmail',ctrlMain.postmail);
 router.get('/send/email',ctrlMain.findEmail);
-
+router.get('/send/email2',ctrlMain.findEmail2);
+router.get('/postmail2',ctrlMain.postmail2);
 
 router.get('/student/displayevent',ctrlEvent.displayEvent);
 
