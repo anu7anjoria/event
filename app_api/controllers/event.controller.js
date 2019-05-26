@@ -64,9 +64,9 @@ module.exports.register = function(req,res){
             const data = req.body.cost;
             //res.send(EventRg);
             if (process.env.NODE_ENV === 'production') {
-                apiOptions.server = 'https://chitkara-event.herokuapp.com';
+                apiOptions.server = 'https://chitkara-event.herokuapp.com/paywithpaytm?amount=';
               }
-            res.redirect(apiOptions.server+'/paywithpaytm?amount='+data);
+            res.redirect(apiOptions.server+data);
         }
     })
 }
