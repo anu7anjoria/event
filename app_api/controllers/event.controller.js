@@ -7,6 +7,7 @@ const fs = require('fs');
 module.exports.home = function(rq,res){
     res.render('index.ejs');
 }
+
 module.exports.addevent = function(req,res){
     Event.create({
         name:req.body.ename,
@@ -62,7 +63,10 @@ module.exports.register = function(req,res){
         }else{
             const data = req.body.cost;
             //res.send(EventRg);
-            res.redirect('/paywithpaytm?amount='+data);
+            if (process.env.NODE_ENV === 'production') {
+                apiOptions.server = 'https://chitkara-event.herokuapp.com';
+              }
+            res.redirect(apiOptions.server+'/paywithpaytm?amount='+data);
         }
     })
 }
