@@ -85,6 +85,8 @@ module.exports.testadd = function(req,res){
                 console.log('ok');
               }else{
                 res.redirect('/paywithpaytm?amount='+data);
+                console.log('ok');
+
               }
               
         }
