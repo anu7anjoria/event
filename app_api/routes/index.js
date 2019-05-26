@@ -39,7 +39,6 @@ router.get('/qr-code/image',function(req,res){
 })
 module.exports = router;
 //kill $(lsof -t -i:4000)
-
 // MID=UrbGhK13213122633792
 // PAYTM_MERCHANT_KEY=eQxCU7CTpb8jZT7q
 // WEBSITE=DEFAULT
