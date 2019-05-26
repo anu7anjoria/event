@@ -80,15 +80,7 @@ module.exports.testadd = function(req,res){
             res.send(err);
         }else{
             const data = req.params.cost;
-            if (process.env.NODE_ENV === 'production') {
-                console.log('ok1');
-                res.redirect('https://chitkara-event.herokuapp.com/paywithpaytm?amount='+data);
-                
-              }else{
-                console.log('ok');
                 res.redirect('/paywithpaytm?amount='+data);
-               
-              }
               
         }
     })
