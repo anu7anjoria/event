@@ -83,7 +83,27 @@ app.route('/signup')
             res.redirect('/signup');
         });
     });
-
+    app.route('/signup2')
+    .get((req, res) => {
+        res.render('signup2.ejs',{title:'Add Admin'});
+    })
+    .post((req, res) => {
+        User.create({
+            flag:req.body.isOther,
+            email: req.body.email,
+            password: req.body.password,
+            phone:req.body.phone,
+            name:req.body.name,
+            univroll:req.body.univroll
+        },
+        function(err,User){
+            if(err){
+                res.json(err);
+            }else{
+                res.redirect('/volunteer');
+            }
+        })
+    });
 
 // route for user Login
 app.route('/login')
@@ -155,15 +175,17 @@ app.post("/paywithpaytmresponse", (req, res) => {
 //     );
 // });
 app.get('/student', (req, res) => {
-    if (req.session.user && req.cookies.user_sid) {
+    const abc = req.session.user;
+    if (abc.flag == 'student') {
         res.render(__dirname + '/views/student.ejs',{title:'Student | Dashboard'});
     } else {
         res.redirect('/login');
     }
   });
   app.get('/volunteer', (req, res) => {
-    if (req.session.user && req.cookies.user_sid) {
-        res.render(__dirname + '/views/volunteer.ejs',{title:'Student | Dashboard'});
+      const abc = req.session.user;
+    if (abc.flag == 'volunteer' ) {
+        res.render(__dirname + '/views/volunteer.ejs',{title:'Volunteer | Dashboard'});
     } else {
         res.redirect('/login');
     }
