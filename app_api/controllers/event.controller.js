@@ -99,11 +99,12 @@ module.exports.testadd = function(req,res){
             res.send(err);
         }else{
             const data = req.params.cost;
-            // if (process.env.NODE_ENV === 'production') {
-            //     res.redirect('https://chitkara-event.herokuapp.com/paywithpaytm?amount='+data);
-            //   }else{
+            if (process.env.NODE_ENV === 'production') {
+                res.redirect('https://chitkara-event.herokuapp.com/paywithpaytm?amount='+data);
+                console.log('ok');
+              }else{
                 res.redirect('/paywithpaytm?amount='+data);
-              //}
+              }
               
         }
     })
