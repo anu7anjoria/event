@@ -12,6 +12,7 @@ const jsArray = [];
     })
     res.redirect('/postmail');
 }
+
 module.exports.postmail = async function(req,res){
     var outputText = "New Event Added";
     var recieverEmail = [];
