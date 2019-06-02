@@ -11,7 +11,12 @@ const User = require('./app_api/models/user');
 require("dotenv").config();
 
 const PORT = process.env.PORT || 4000;
-
+const apiOptions = {
+    server : 'http://localhost:4000'
+  };
+  if (process.env.NODE_ENV === 'production') {
+    apiOptions.server = 'https://chitkara-event.herokuapp.com';
+  }
 const {initPayment, responsePayment} = require("./paytm/services/index");
 
 app.use(cors());
@@ -138,7 +143,7 @@ app.route('/login')
         }
       });
 
-app.get("/paywithpaytm", (req, res) => {
+app.get(apiOptions.server+"/paywithpaytm", (req, res) => {
     initPayment(req.query.amount).then(
         success => {
             res.render("paytmRedirect.ejs", {
@@ -152,7 +157,7 @@ app.get("/paywithpaytm", (req, res) => {
     );
 });
 
-app.post("/paywithpaytmresponse", (req, res) => {
+app.post(apiOptions.server+"/paywithpaytmresponse", (req, res) => {
 
     responsePayment(req.body).then(
         success => {
