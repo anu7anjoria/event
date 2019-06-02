@@ -6,6 +6,12 @@ const Organiser = mongoose.model('organiser');
 const Feedback = mongoose.model('feedback');
 const qr = require('qr-image');
 const fs = require('fs');
+const apiOptions = {
+    server : 'http://localhost:4000'
+  };
+  if (process.env.NODE_ENV === 'production') {
+    apiOptions.server = 'https://chitkara-event.herokuapp.com';
+  }
 module.exports.home = function(rq,res){
     res.render('index.ejs');
 }
@@ -172,7 +178,7 @@ module.exports.testadd = function(req,res){
             res.send(err);
         }else{
             const data = req.params.cost;
-                res.redirect('/paywithpaytm?amount='+data);
+                res.redirect(apiOptions.server+'/paywithpaytm?amount='+data);
               
         }
     })
