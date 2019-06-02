@@ -45,11 +45,3 @@ router.get('/qr-code/image',function(req,res){
     res.render('qr-code');
 })
 module.exports = router;
-//kill $(lsof -t -i:4000)
-// MID=UrbGhK13213122633792
-// PAYTM_MERCHANT_KEY=eQxCU7CTpb8jZT7q
-// WEBSITE=DEFAULT
-
-// MID=bQrfeo02462023666025
-// PAYTM_MERCHANT_KEY=FeuUj@Wiw&PzW2VT
-// WEBSITE=WEBSTAGING

@@ -24,7 +24,7 @@ module.exports.postmail = async function(req,res){
         service: 'gmail',
         auth: {
             user: "edwardswift28@gmail.com", // generated ethereal user
-            pass: "analkumargta"  // generated ethereal password
+            pass: ""  // generated ethereal password
            },
     
         tls:{
@@ -70,7 +70,7 @@ module.exports.postmail = async function(req,res){
         service: 'gmail',
         auth: {
             user: "edwardswift28@gmail.com", // generated ethereal user
-            pass: "analkumargta"  // generated ethereal password
+            pass: ""  // generated ethereal password
            },
     
         tls:{
