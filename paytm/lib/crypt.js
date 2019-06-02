@@ -7,7 +7,6 @@ var util = require('util');
 
 var crypt = {
   iv: '@@@@&&&&####$$$$',
-
   encrypt: function (data,custom_key) {
     var iv = this.iv;
     var key = custom_key;
