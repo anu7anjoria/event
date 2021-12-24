@@ -4,11 +4,12 @@ var mongoose = require('mongoose');
 if (process.env.NODE_ENV === 'production') {
   dbURI = process.env.MONGODB_URI;
 }
-mongoose.connect('mongodb://anu:t2mt2m@ds121415.mlab.com:21415/restapi123');
+mongoose.connect('mongodb+srv://anusanjoria:PNzKaWBWFqN3Ddsf@cluster0.2z9zl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 
 mongoose.connection.on('connected', () => {
-  console.log(`Mongoose connected to ${'mongodb://anu:t2mt2m@ds121415.mlab.com:21415/restapi123'}`);
+  console.log(`Mongoose connected to ${'mongodb+srv://anusanjoria:PNzKaWBWFqN3Ddsf@cluster0.2z9zl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'}`);
 });
+
 mongoose.connection.on('error', err => {
   console.log('Mongoose connection error:', err);
 });
